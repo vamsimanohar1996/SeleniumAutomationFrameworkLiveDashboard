@@ -9,6 +9,7 @@ import java.util.Objects;
 import java.util.Properties;
 
 import org.personal.constants.Constants;
+import org.personal.enums.ConfigProperties;
 
 public final class ReadPropertyFileInMap {
 
@@ -25,7 +26,7 @@ public final class ReadPropertyFileInMap {
 			property.load(fileInputStream);
 
 			for (Map.Entry<Object, Object> entry : property.entrySet()) {
-				CONFIG_MAP.put(String.valueOf(entry.getKey()), String.valueOf(entry.getValue()));
+				CONFIG_MAP.put(String.valueOf(entry.getKey()), String.valueOf(entry.getValue()).trim());
 			}
 
 //			property.entrySet()
@@ -38,12 +39,12 @@ public final class ReadPropertyFileInMap {
 		}
 	}
 
-	public static String getValue(String key) throws Exception {
-		if (Objects.isNull(key) || Objects.isNull(CONFIG_MAP.get(key))) {
+	public static String getValue(ConfigProperties key) throws Exception {
+		if (Objects.isNull(key.name().toLowerCase()) || Objects.isNull(CONFIG_MAP.get(key.name().toLowerCase()))) {
 			throw new Exception("Property name " + key + " is not found. Please check config.properties file");
 		}
 
-		return CONFIG_MAP.get(key);
+		return CONFIG_MAP.get(key.name().toLowerCase());
 	}
 
 }

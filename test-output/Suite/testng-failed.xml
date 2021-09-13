@@ -1,22 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
-<suite name="Failed suite [Suite]" guice-stage="DEVELOPMENT">
+<suite data-provider-thread-count="4" name="Failed suite [Suite]" guice-stage="DEVELOPMENT">
+  <listeners>
+    <listener class-name="org.personal.listeners.ListenerClass"/>
+    <listener class-name="org.personal.listeners.MethodInterceptor"/>
+    <listener class-name="org.personal.listeners.AnnotationTransformer"/>
+  </listeners>
   <test thread-count="5" parallel="methods" name="Test(failed)">
     <classes>
-      <class name="org.personal.tests.LoginPageTest">
-        <methods>
-          <include name="test1"/>
-          <include name="tearDown"/>
-          <include name="setUp"/>
-        </methods>
-      </class> <!-- org.personal.tests.LoginPageTest -->
-      <class name="org.personal.tests.HomePageTest">
+      <class name="org.personal.tests.OrangeHRMTests">
         <methods>
           <include name="tearDown"/>
-          <include name="test1"/>
+          <include name="newTest"/>
           <include name="setUp"/>
+          <include name="loginLogoutTest"/>
         </methods>
-      </class> <!-- org.personal.tests.HomePageTest -->
+      </class> <!-- org.personal.tests.OrangeHRMTests -->
     </classes>
   </test> <!-- Test(failed) -->
 </suite> <!-- Failed suite [Suite] -->
