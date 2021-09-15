@@ -8,14 +8,15 @@ public class BasePage {
 
 	protected void click(By by, WaitStrategy waitStrategy) {
 
-		//DriverManager.getDriver().findElement(by).click();
-		
-		
 		ExplicitWaitFactory.performExplicitWait(waitStrategy, by).click();
 	}
 
-	protected void sendKeys(By by, String keys,WaitStrategy waitStrategy) {
+	protected void sendKeys(By by, String keys, WaitStrategy waitStrategy) {
 		ExplicitWaitFactory.performExplicitWait(waitStrategy, by).sendKeys(keys);
 	}
 
+	protected void click(By by, WaitStrategy waitStrategy,String element) {
+
+		ExplicitWaitFactory.performExplicitWait(waitStrategy, by).click();
+	}
 }

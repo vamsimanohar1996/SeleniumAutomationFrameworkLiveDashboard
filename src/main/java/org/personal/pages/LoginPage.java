@@ -4,7 +4,6 @@ import org.openqa.selenium.By;
 import org.personal.driver.DriverManager;
 import org.personal.enums.WaitStrategy;
 import org.personal.reports.ExtentLogger;
-import org.personal.reports.ExtentManager;
 
 public final class LoginPage extends BasePage {
 

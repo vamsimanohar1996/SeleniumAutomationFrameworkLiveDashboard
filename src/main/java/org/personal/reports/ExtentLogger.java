@@ -24,7 +24,7 @@ public final class ExtentLogger {
 		ExtentManager.getExtentTest().skip(message);
 	}
 
-	public static void pass(String message, boolean isScreenshotRequired) throws Exception {
+	public static void pass(String message, boolean isScreenshotRequired)  {
 		if (ReadPropertyFileInMap.getValue(ConfigProperties.PASSEDSTEPSCREENSHOTS).equalsIgnoreCase("yes")
 				&& isScreenshotRequired) {
 			ExtentManager.getExtentTest().pass(message,
@@ -37,7 +37,7 @@ public final class ExtentLogger {
 
 	}
 
-	public static void fail(String message, boolean isScreenshotRequired) throws Exception {
+	public static void fail(String message, boolean isScreenshotRequired)  {
 		if (ReadPropertyFileInMap.getValue(ConfigProperties.FAILEDSTEPSCREENSHOTS).equalsIgnoreCase("yes")
 				&& isScreenshotRequired) {
 			ExtentManager.getExtentTest().fail(message,
@@ -50,7 +50,7 @@ public final class ExtentLogger {
 
 	}
 
-	public static void skip(String message, boolean isScreenshotRequired) throws Exception {
+	public static void skip(String message, boolean isScreenshotRequired)  {
 		if (ReadPropertyFileInMap.getValue(ConfigProperties.SKIPPEDSTEPSCREENSHOTS).equalsIgnoreCase("yes")
 				&& isScreenshotRequired) {
 			ExtentManager.getExtentTest().skip(message,

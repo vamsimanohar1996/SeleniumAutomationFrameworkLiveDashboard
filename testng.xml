@@ -9,7 +9,7 @@
 </listeners>
   <test thread-count="1" name="Test" parallel="methods">
     <classes>
-      <class name="org.personal.tests.OrangeHRMTests"/>
+      <class name="org.personal.tests.AmazonPageTest"/>
     </classes>
   </test> <!-- Test -->
 </suite> <!-- Suite -->

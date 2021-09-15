@@ -2,9 +2,11 @@ package org.personal.reports;
 
 import java.awt.Desktop;
 import java.io.File;
+import java.io.IOException;
 import java.util.Objects;
 
 import org.personal.constants.Constants;
+import org.personal.enums.CategoryType;
 
 import com.aventstack.extentreports.ExtentReports;
 import com.aventstack.extentreports.reporter.ExtentSparkReporter;
@@ -14,12 +16,11 @@ public final class ExtentReport {
 
 	private static ExtentReports extent;
 
-
 	private ExtentReport() {
 
 	}
 
-	public static void initReport() throws Exception {
+	public static void initReport() {
 
 		if (Objects.isNull(extent)) {
 			extent = new ExtentReports();
@@ -32,17 +33,34 @@ public final class ExtentReport {
 
 	}
 
-	public static void flushReport() throws Exception {
+	public static void flushReport() {
 		if (Objects.nonNull(extent)) {
 			extent.flush();
 		}
 		ExtentManager.unload();
-		Desktop.getDesktop().browse(new File(Constants.getReportPath()).toURI());
+		try {
+			Desktop.getDesktop().browse(new File(Constants.getReportPath()).toURI());
+		} catch (IOException e) {
+
+			e.printStackTrace();
+		}
 	}
 
 	public static void createTest(String testCaseName) {
 		ExtentManager.setExtentTest(extent.createTest(testCaseName));
-	
-		
+
+	}
+
+	public static void addAuthors(String[] authors) {
+		for (String author : authors) {
+			ExtentManager.getExtentTest().assignAuthor(author);
+		}
+	}
+
+	public static void addCategories(CategoryType[] categories) {
+
+		for (CategoryType category : categories) {
+			ExtentManager.getExtentTest().assignCategory(category.toString());
+		}
 	}
 }

@@ -11,9 +11,8 @@
       <class name="org.personal.tests.OrangeHRMTests">
         <methods>
           <include name="tearDown"/>
-          <include name="newTest"/>
           <include name="setUp"/>
-          <include name="loginLogoutTest"/>
+          <include name="loginLogoutTest" invocation-numbers="0 1"/>
         </methods>
       </class> <!-- org.personal.tests.OrangeHRMTests -->
     </classes>

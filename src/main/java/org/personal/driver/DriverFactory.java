@@ -5,7 +5,6 @@ import java.util.Objects;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
-import org.openqa.selenium.firefox.GeckoDriverInfo;
 import org.personal.enums.ConfigProperties;
 import org.personal.utils.ReadPropertyFileInMap;
 
@@ -19,7 +18,7 @@ public final class DriverFactory {
 
 	}
 
-	public static void initDriver(String browser) throws Exception {
+	public static void initDriver(String browser)  {
 		if (Objects.isNull(DriverManager.getDriver())) {
 			if (browser.equalsIgnoreCase("chrome")) {
 				WebDriverManager.chromedriver().setup();

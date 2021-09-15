@@ -7,11 +7,12 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Objects;
 
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.personal.constants.Constants;
+import org.personal.exceptions.FrameworkExceptions;
+import org.personal.exceptions.InvalidTestDataPathException;
 
 public final class ExcelUtils {
 
@@ -20,53 +21,40 @@ public final class ExcelUtils {
 	}
 
 	public static List<Map<String, String>> getTestData(String sheetName) {
-		
-		List<Map<String, String>> list=null;
-		FileInputStream fs = null;
-		try {
 
-			 fs = new FileInputStream(Constants.getExcelPath());
+		List<Map<String, String>> list = null;
+
+		try (FileInputStream fs = new FileInputStream(Constants.getExcelPath())) {
 			XSSFWorkbook workbook = new XSSFWorkbook(fs);
 			XSSFSheet sheet = workbook.getSheet(sheetName);
 			int rows = sheet.getLastRowNum();
 			int cols = sheet.getRow(0).getLastCellNum();
 			Map<String, String> map = null;
-			 list = new ArrayList<>();
-			for (int i = 1; i <= rows; i++) 
-			{
-				map = new HashMap<>();
-				for (int j = 0; j < cols; j++) 
-				{
+			list = new ArrayList<>();
+			for (int i = 1; i <= rows; i++) {
+				map = new HashMap<>(); 
+				for (int j = 0; j < cols; j++) {
 					String key = sheet.getRow(0).getCell(j).getStringCellValue();
 					String value = sheet.getRow(i).getCell(j).getStringCellValue();
 					map.put(key, value);
 				}
 				list.add(map);
 			}
+
+		} catch (FileNotFoundException e) {
 			
-	
-		} catch (FileNotFoundException fn) {
-			fn.printStackTrace();
-
-		} catch (IOException io) {
-			io.printStackTrace();
+			//Customizing the stack trace
+			
+			/*
+			 * StackTraceElement[] ex = e.getStackTrace(); ex[0]=new
+			 * StackTraceElement("org.personal.utils.ExcelUtils",
+			 * "getTestData","ExcelUtils.java",25); e.setStackTrace(ex);
+			 */
+			
+			throw new InvalidTestDataPathException("Test Data File is not found");
+		} catch (IOException e) {
+			throw new FrameworkExceptions("IO Exception while reading Excel File");
 		}
-		
-		finally
-		{
-			try {
-				if(Objects.nonNull(fs))
-				{
-					fs.close();
-				}
-		
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-		}
-
 		return list;
 	}
-
 }

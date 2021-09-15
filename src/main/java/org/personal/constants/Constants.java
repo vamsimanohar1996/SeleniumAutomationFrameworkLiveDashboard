@@ -10,7 +10,7 @@ public class Constants {
 	}
 
 	private static final String CONFIG_FILE_PATH = System.getProperty("user.dir")
-			+ "/src/test/resources/config/config.properties";
+			+ "/src/test/resources/config/config1.properties";
 	private static final String JSON_FILE_PATH = System.getProperty("user.dir")
 			+ "/src/test/resources/config/config.json";
 	
@@ -32,7 +32,7 @@ public class Constants {
 	private static final String EXTENT_REPORT_FOLDER_PATH = System.getProperty("user.dir") + "/extent-test-output";
 	private static String extentReportFilePath = "";
 
-	public static String getReportPath() throws Exception {
+	public static String getReportPath()  {
 		if (extentReportFilePath.isEmpty()) {
 			extentReportFilePath = createReportPath();
 		}
@@ -40,7 +40,7 @@ public class Constants {
 
 	}
 
-	private static String createReportPath() throws Exception {
+	private static String createReportPath() {
 		if (ReadPropertyFileInMap.getValue(ConfigProperties.OVERRIDEREPORTS).equalsIgnoreCase("no")) {
 			return EXTENT_REPORT_FOLDER_PATH +"/" + System.currentTimeMillis() + "/index.html";
 		} else {
