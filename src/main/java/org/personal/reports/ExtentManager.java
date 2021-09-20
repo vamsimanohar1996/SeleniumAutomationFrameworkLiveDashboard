@@ -1,5 +1,7 @@
 package org.personal.reports;
 
+import java.util.Objects;
+
 import com.aventstack.extentreports.ExtentTest;
 
 public class ExtentManager {
@@ -15,7 +17,9 @@ public class ExtentManager {
 	}
 
 	static void setExtentTest(ExtentTest test) {
-		exTest.set(test);
+		if (Objects.nonNull(test)) {
+			exTest.set(test);
+		}
 	}
 
 	static void unload() {

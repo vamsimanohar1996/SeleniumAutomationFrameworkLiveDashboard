@@ -1,0 +1,13 @@
+org.personal.annotations
+org.personal.constants
+org.personal.dataprovider
+org.personal.dataprovidertests
+org.personal.driver
+org.personal.enums
+org.personal.exceptions
+org.personal.factories
+org.personal.listeners
+org.personal.pages
+org.personal.reports
+org.personal.tests
+org.personal.utils

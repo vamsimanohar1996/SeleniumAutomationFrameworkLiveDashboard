@@ -1,0 +1,44 @@
+version: "3"
+services:
+    selenium-hub:
+        image: selenium/hub:latest
+        container_name: selenium-hub
+        restart: always
+        ports:
+          - "4444:4444"
+    chrome:
+        image: selenium/node-chrome:latest
+        depends_on:
+            - selenium-hub
+        environment:
+            - HUB_HOST=selenium-hub
+            - HUB_PORT=4444
+        restart: on-failure:3
+        shm_size: '2gb'
+    firefox:
+        image: selenium/node-firefox:latest
+        depends_on:
+          - selenium-hub
+        environment:
+          - HUB_HOST=selenium-hub
+          - HUB_PORT=4444
+        restart: on-failure:3
+        shm_size: '2gb'
+    elasticsearch:
+        image: elasticsearch:7.11.1
+        container_name: elasticsearch
+        environment:
+          - discovery.type=single-node-chrome
+        ports:
+          - "9200:9200"
+          - "9300:9300"
+    kibana:
+        image: kibana:7.11.1
+        container_name: kibana
+        depends_on:
+          - elasticsearch
+        links:
+          - elasticsearch:elasticsearch
+        ports:
+          - "5601:5601"        
+    

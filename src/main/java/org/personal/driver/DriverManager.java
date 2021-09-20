@@ -1,6 +1,15 @@
 package org.personal.driver;
 
+import java.util.Objects;
+
 import org.openqa.selenium.WebDriver;
+
+/**
+ * 
+ * 15-Sep-2021
+ * 
+ * @author Vamsi Manohar 2021
+ */
 
 public final class DriverManager {
 
@@ -14,11 +23,13 @@ public final class DriverManager {
 		return dr.get();
 	}
 
-	public static void setDriver(WebDriver driver) {
-		dr.set(driver);
+	static void setDriver(WebDriver driver) {
+		if (Objects.nonNull(driver)) {
+			dr.set(driver);
+		}
 	}
 
-	public static void unload() {
+	static void unload() {
 		dr.remove();
 	}
 

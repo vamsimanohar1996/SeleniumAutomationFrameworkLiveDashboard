@@ -10,7 +10,7 @@ public class Constants {
 	}
 
 	private static final String CONFIG_FILE_PATH = System.getProperty("user.dir")
-			+ "/src/test/resources/config/config1.properties";
+			+ "/src/test/resources/config/config.properties";
 	private static final String JSON_FILE_PATH = System.getProperty("user.dir")
 			+ "/src/test/resources/config/config.json";
 	
